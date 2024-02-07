@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339853962297",
+    "project_id": "quantummind-65236",
+    "storage_bucket": "quantummind-65236.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339853962297:android:c8ed8258f826d5e15671e8",
+        "android_client_info": {
+          "package_name": "android.example.quantummind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxoOXX7jqrRRbdrCrgXC5jAHeklsOkuT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

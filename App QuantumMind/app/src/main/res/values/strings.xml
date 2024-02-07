@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuantumMind</string>
+    <string name="start_game">Comenzar juego</string>
+    <string name="view_achievements">Ver Logros</string>
+    <string name="username_hint">Email\n</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="create_account">Crear cuenta</string>
+</resources>

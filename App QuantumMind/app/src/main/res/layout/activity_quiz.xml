@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".QuizActivity">
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aquí va la pregunta"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Botones de respuesta -->
+    <Button
+        android:id="@+id/answerButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAnswerButtonClick"
+        android:text="Respuesta 1"/>
+
+    <Button
+        android:id="@+id/answerButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAnswerButtonClick"
+        android:text="Respuesta 2"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/answerButton3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAnswerButtonClick"
+        android:text="Respuesta 3"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/answerButton4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAnswerButtonClick"
+        android:text="Respuesta 4"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
