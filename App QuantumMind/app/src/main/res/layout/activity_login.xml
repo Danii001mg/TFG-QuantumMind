@@ -8,7 +8,6 @@
     android:gravity="center_horizontal"
     tools:context=".LoginActivity">
 
-    <!-- Título de la pantalla de inicio de sesión -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
         android:layout_marginTop="48dp"
         android:layout_marginBottom="32dp"/>
 
-    <!-- Campo de correo electrónico -->
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
@@ -28,7 +26,6 @@
         android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Campo de contraseña -->
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
@@ -38,7 +35,6 @@
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Checkbox para la opción "Recuérdame" -->
     <CheckBox
         android:id="@+id/rememberMeCheckBox"
         android:layout_width="wrap_content"
@@ -46,7 +42,6 @@
         android:text="Recuérdame"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Enlace para "¿Olvidaste tu contraseña?" -->
     <TextView
         android:id="@+id/forgotPasswordText"
         android:layout_width="wrap_content"
@@ -55,7 +50,6 @@
         android:textColor="?attr/colorPrimary"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Botón de inicio de sesión -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
@@ -66,7 +60,6 @@
         android:onClick="login"
         android:layout_marginBottom="32dp"/>
 
-    <!-- Enlace para registrarse -->
     <TextView
         android:id="@+id/registerText"
         android:layout_width="wrap_content"

@@ -18,7 +18,6 @@ public class Question implements Parcelable {
         this.correctAnswer = correctAnswer;
     }
 
-    // Constructor que toma un Parcel y construye una instancia de Question
     protected Question(Parcel in) {
         id = in.readString();
         questionText = in.readString();
@@ -36,7 +35,7 @@ public class Question implements Parcelable {
 
     @Override
     public int describeContents() {
-        return 0; // No hay necesidades especiales, retorna 0
+        return 0;
     }
 
     // Getters
@@ -46,7 +45,6 @@ public class Question implements Parcelable {
 
     public String getId() { return id; }
 
-    // CREATOR es un objeto Parcelable.Creator que genera instancias de tu clase Parcelable
     public static final Creator<Question> CREATOR = new Creator<Question>() {
         @Override
         public Question createFromParcel(Parcel in) {

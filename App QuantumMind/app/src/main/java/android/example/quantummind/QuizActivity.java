@@ -40,20 +40,18 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Verifica si el usuario está autenticado
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             // Usuario no autenticado, redirige a LoginActivity
             startActivity(new Intent(this, LoginActivity.class));
-            finish(); // Finaliza esta actividad para que el usuario no pueda regresar a ella presionando atrás
-            return; // No continúes ejecutando este método
+            finish();
+            return;
         }
 
-        // Si el usuario está autenticado, continúa inicializando la actividad
         setContentView(R.layout.activity_quiz);
         score = 0;
         initializeQuestions();
         displayNextQuestion();
-        retrieveUserProgress(); // Recupera el progreso del usuario
+        retrieveUserProgress();
     }
 
 
@@ -116,7 +114,6 @@ public class QuizActivity extends AppCompatActivity {
         Button answerButton4 = findViewById(R.id.answerButton4);
         answerButton4.setText(choices.get(3));
 
-        // Más lógica para manejar las respuestas si es necesario
     }
 
     private void setButtonsEnabled(boolean enabled) {
@@ -190,7 +187,7 @@ public class QuizActivity extends AppCompatActivity {
         if (currentQuestion.getCorrectAnswer().equals(selectedAnswer)) {
             score++;
             Toast.makeText(this, "¡Respuesta correcta!", Toast.LENGTH_SHORT).show();
-            questionAnsweredCorrectly(currentQuestion); // Llama a este método cuando la respuesta sea correcta
+            questionAnsweredCorrectly(currentQuestion);
         } else {
             Toast.makeText(this, "Respuesta incorrecta.", Toast.LENGTH_SHORT).show();
         }
@@ -215,5 +212,4 @@ public class QuizActivity extends AppCompatActivity {
         checkAnswer(selectedAnswer);
     }
 
-    // Métodos para manejar los eventos de clic en la respuesta, actualizar la UI, etc.
 }

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         achievementsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent para abrir AchievementsActivity
             }
         });
     }

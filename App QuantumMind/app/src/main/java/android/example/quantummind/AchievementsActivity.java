@@ -16,7 +16,6 @@ public class AchievementsActivity extends AppCompatActivity {
 
         achievementsListView = findViewById(R.id.achievementsListView);
 
-        // Ejemplo de datos de logros, reemplázalos con tus datos reales
         String[] achievements = new String[] {"Logro 1", "Logro 2", "Logro 3"};
 
         // Usando un ArrayAdapter simple para mostrar los logros

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Nombre de tu aplicación -->
     <TextView
         android:id="@+id/appNameTextView"
         android:layout_width="wrap_content"
@@ -14,7 +13,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"/>
 
-    <!-- Logo de tu aplicación justo debajo del nombre -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="170dp"
@@ -24,7 +22,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
-    <!-- Botón para comenzar el juego -->
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
@@ -34,7 +31,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"/>
 
-    <!-- Botón para ver logros -->
     <Button
         android:id="@+id/achievementsButton"
         android:layout_width="wrap_content"
