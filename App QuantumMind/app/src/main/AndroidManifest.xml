@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -27,6 +28,11 @@
         <activity android:name="android.example.quantummind.AchievementsActivity" />
         <activity android:name="android.example.quantummind.RegisterActivity" />
         <activity android:name="android.example.quantummind.MainActivity" />
+        <activity android:name="android.example.quantummind.UserProfileActivity" />
+        <activity android:name="android.example.quantummind.SettingsActivity" />
+        <activity android:name="android.example.quantummind.EditProfileActivity" />
+
+
     </application>
 
 </manifest>

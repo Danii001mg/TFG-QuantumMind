@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar sesión"
+        android:text="@string/log_in"
         android:textSize="24sp"
         android:textColor="#000"
         android:layout_marginTop="48dp"
@@ -21,7 +21,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo electrónico"
+        android:hint="@string/email"
         android:background="@drawable/edit_text_style"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp"/>
@@ -30,7 +30,7 @@
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contraseña"
+        android:hint="@string/password"
         android:background="@drawable/edit_text_style"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"/>
@@ -39,14 +39,14 @@
         android:id="@+id/rememberMeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recuérdame"
+        android:text="@string/remember_me"
         android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/forgotPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Olvidaste tu contraseña?"
+        android:text="@string/forget_password"
         android:textColor="?attr/colorPrimary"
         android:layout_marginBottom="24dp"/>
 
@@ -54,8 +54,8 @@
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar sesión"
-        android:background="@drawable/button_style"
+        android:text="@string/log_in"
+        android:background="@color/bottomNavBackground"
         android:textColor="#FFF"
         android:onClick="login"
         android:layout_marginBottom="32dp"/>
@@ -64,7 +64,7 @@
         android:id="@+id/registerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tienes cuenta? Regístrate"
+        android:text="@string/register"
         android:textColor="?attr/colorPrimary"
         android:onClick="openRegister"/>
 

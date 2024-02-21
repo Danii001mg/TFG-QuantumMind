@@ -1,43 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/appNameTextView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"/>
-
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:src="@drawable/logo_transparent"
-        android:layout_below="@id/appNameTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_game"
-        android:layout_below="@id/logoImageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
-
-    <Button
-        android:id="@+id/achievementsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/view_achievements"
-        android:layout_below="@id/startButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/bottomNavBackground"
+        app:itemIconTint="@drawable/bottom_nav_item_color"
+        app:itemTextColor="@drawable/bottom_nav_item_color"
+        app:itemBackground="@drawable/bottom_nav_ripple"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </RelativeLayout>

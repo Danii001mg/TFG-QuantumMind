@@ -18,5 +18,13 @@
         <item name="buttonStyle">@style/AppButton</item>
     </style>
 
+    <style name="ProfileNameText" parent="TextAppearance.AppCompat.Large">
+        <!-- Add your styling here -->
+    </style>
+
+    <!-- Style for the profile email -->
+    <style name="ProfileEmailText" parent="TextAppearance.AppCompat.Small">
+        <!-- Add your styling here -->
+    </style>
 
 </resources>

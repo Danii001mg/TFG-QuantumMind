@@ -2,38 +2,40 @@ package android.example.quantummind;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    Button startButton, achievementsButton;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = findViewById(R.id.startButton);
-        achievementsButton = findViewById(R.id.achievementsButton);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
+        // Configura los elementos de navegación para abrir las actividades correspondientes
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.navigation_home) {
+                // Código para la sección de inicio
+                return true;
+            } else if (id == R.id.navigation_lessons) {
+                // Código para la sección de lecciones
+                return true;
+            } else if (id == R.id.navigation_questions) {
+                // Código para la sección de preguntas
+                return true;
+            } else if (id == R.id.navigation_profile) {
+                startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
+                return true;
             }
+            return false;
         });
 
-        achievementsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+
+        // Seleccionar el ítem de inicio por defecto
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
     }
 }
