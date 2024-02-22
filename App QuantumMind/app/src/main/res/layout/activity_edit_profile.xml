@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Profile Image -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="161dp"
+        android:layout_height="149dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_profile_picture_placeholder"
+        app:civ_border_color="#FFC107"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/labelUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImageView"
+        android:layout_marginTop="50dp"
+        android:text="Nombre de usuario"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <!-- Username Edit Text -->
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelUsername"
+        android:hint="Username"
+        android:inputType="text"
+        android:enabled="false"
+        android:paddingEnd="16dp"
+        android:layout_toStartOf="@id/editUsernameIcon"
+        android:layout_alignParentStart="true"/>
+
+    <!-- Edit Icon for Username -->
+
+    <!-- Email Edit Text -->
+    <ImageView
+        android:id="@+id/editUsernameIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/usernameEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_pencil" />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usernameEditText"
+        android:layout_marginTop="15dp"
+        android:text="Email"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelEmail"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:enabled="false"
+        android:paddingEnd="16dp"
+        android:layout_toStartOf="@id/editEmailIcon"
+        android:layout_alignParentStart="true"/>
+
+    <!-- Edit Icon for Email -->
+
+    <!-- Password Edit Text -->
+
+    <ImageView
+        android:id="@+id/editEmailIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/emailEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_pencil" />
+
+    <TextView
+        android:id="@+id/labelPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailEditText"
+        android:layout_marginTop="15dp"
+        android:text="Contraseña"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelPassword"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:enabled="false"
+        android:paddingEnd="16dp"
+        android:layout_toStartOf="@id/editPasswordIcon"
+        android:layout_alignParentStart="true"/>
+
+    <!-- Edit Icon for Password -->
+
+    <!-- Save Changes Button -->
+
+    <ImageView
+        android:id="@+id/editPasswordIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/passwordEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_pencil" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginTop="110dp"
+        android:background="@color/bottomNavBackground"
+        android:text="Guardar cambios"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
