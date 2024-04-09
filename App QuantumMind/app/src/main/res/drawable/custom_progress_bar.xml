@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color de fondo de la barra de progreso (no lleno) -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="5dp" />
+            <solid android:color="#E0E0E0" /> <!-- Gris claro para el fondo -->
+        </shape>
+    </item>
+
+    <!-- Color para el progreso principal (pregunta actual) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="5dp" />
+                <solid android:color="#FF9800" /> <!-- Naranja para la pregunta actual -->
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Color para el progreso secundario (respuestas correctas), definido después para que predomine -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="5dp" />
+                <solid android:color="#4CAF50" /> <!-- Verde para las respuestas correctas -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

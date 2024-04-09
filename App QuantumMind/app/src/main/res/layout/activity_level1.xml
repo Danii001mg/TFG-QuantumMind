@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Level1Activity">
+    
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomRightButton"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/lessonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginBottom="120dp"/>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:background="@color/bottomNavBackground">
+
+        <TextView
+            android:id="@+id/questionCounter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <ProgressBar
+            android:id="@+id/questionProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="3"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            android:max="100"
+            android:progress="10" />
+
+        <TextView
+            android:id="@+id/percentageCorrect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0%"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <!-- Texto de la pregunta -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pregunta relacionada a la lección"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/progressBar"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="#000" />
+
+    <!-- Respuestas -->
+    <RadioGroup
+        android:id="@+id/answersGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionText"
+        android:visibility="gone"
+        android:padding="16dp">
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answersGroup"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="80dp"
+        android:background="@color/bottomNavBackground"/>
+
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comprobar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answersGroup"
+        android:layout_toLeftOf="@id/acceptButton"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/bottomNavBackground"/>
+
+    <TextView
+        android:id="@+id/correctAnswerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFCCCB"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:layout_below="@id/acceptButton"
+        android:layout_marginTop="16dp"/>
+
+    <ImageView
+        android:id="@+id/bottomRightButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:src="@drawable/ic_arrow_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</RelativeLayout>
