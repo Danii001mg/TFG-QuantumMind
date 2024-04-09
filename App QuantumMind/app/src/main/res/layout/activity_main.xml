@@ -6,15 +6,273 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <LinearLayout
+        android:id="@+id/userProfileBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/bottomNavBackground"
-        app:itemIconTint="@drawable/bottom_nav_item_color"
-        app:itemTextColor="@drawable/bottom_nav_item_color"
-        app:itemBackground="@drawable/bottom_nav_ripple"
-        app:menu="@menu/bottom_navigation_menu" />
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:gravity="center_vertical"
+        android:background="@color/bottomNavBackground">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfileImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_profile_picture_placeholder"
+            app:civ_border_width="2dp"
+            android:layout_marginStart="1dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/userProfileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white" />
+
+        <!-- ImageView para logros se coloca antes del settings para que aparezca a su izquierda -->
+
+        <!-- ImageView para settings se coloca al final para que aparezca a la derecha -->
+
+        <!-- ImageView para settings se coloca al final y se le indica que esté a la izquierda del botón de logros -->
+
+        <ImageView
+            android:id="@+id/achievementsButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_marginRight="30dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_achievements" />
+
+        <ImageView
+            android:id="@+id/settingsButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:src="@drawable/ic_settings"
+            android:scaleType="fitCenter"/>
+    </LinearLayout>
+
+    <!-- Level map layout -->
+    <RelativeLayout
+        android:id="@+id/levelMapContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/game_background"
+        android:layout_below="@id/userProfileBar"
+        android:layout_marginTop="0dp"
+        android:padding="16dp">
+
+        <!-- Nivel 1 -->
+        <ImageView
+            android:id="@+id/level1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/level1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Conceptos\ngenerales"
+            android:fontFamily="@font/big_blue"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/level1_points"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toLeftOf="@id/level1"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-10dp"
+            android:layout_marginRight="5dp" />
+
+        <!-- Nivel 2 -->
+        <ImageView
+            android:id="@+id/level2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/circle_shape_lvl2" />
+
+        <ImageView
+            android:id="@+id/level3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level2"
+            android:layout_toLeftOf="@id/level4"
+            android:layout_marginRight="90dp"
+            android:layout_marginTop="260dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <ImageView
+            android:id="@+id/level4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level2"
+            android:layout_marginTop="260dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <ImageView
+            android:id="@+id/level5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="260dp"
+            android:layout_marginLeft="90dp"
+            android:layout_toRightOf="@id/level4"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <ImageView
+            android:id="@+id/level6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level3"
+            android:layout_toLeftOf="@id/level4"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="90dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <ImageView
+            android:id="@+id/level7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level5"
+            android:layout_marginTop="430dp"
+            android:layout_marginLeft="90dp"
+            android:layout_toRightOf="@id/level4"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <ImageView
+            android:id="@+id/level8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/level4"
+            android:layout_marginTop="560dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/circle_shape_lvl2"/>
+
+        <!-- Línea de conexión entre Nivel 1 y Nivel 2 -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/level1"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 2 y Nivel 5 (1) -->
+        <View
+            android:layout_width="115dp"
+            android:layout_height="2dp"
+            android:layout_toRightOf="@id/level2"
+            android:layout_marginTop="140dp"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 2 y Nivel 5 (2) -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="115dp"
+            android:layout_toRightOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 2 y Nivel 3 (1) -->
+        <View
+            android:layout_width="115dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="140dp"
+            android:layout_toLeftOf="@id/level2"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 2 y Nivel 3 (2) -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginRight="115dp"
+            android:layout_toLeftOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 2 y Nivel 4 -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/level2"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 3 y Nivel 6 -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="115dp"
+            android:layout_marginTop="310dp"
+            android:layout_toLeftOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 5 y Nivel 7 -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="310dp"
+            android:layout_toRightOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 6 y Nivel 8 (1) -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="115dp"
+            android:layout_marginTop="480dp"
+            android:layout_toLeftOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 6 y Nivel 8 (2) -->
+        <View
+            android:layout_width="117dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="580dp"
+            android:layout_toLeftOf="@id/level8"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 7 y Nivel 8 (1) -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="480dp"
+            android:layout_toRightOf="@id/level4"
+            android:background="@android:color/white" />
+
+        <!-- Línea de conexión entre Nivel 7 y Nivel 8 (2) -->
+        <View
+            android:layout_width="117dp"
+            android:layout_height="2dp"
+            android:layout_toRightOf="@id/level8"
+            android:layout_marginTop="580dp"
+            android:background="@android:color/white" />
+
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

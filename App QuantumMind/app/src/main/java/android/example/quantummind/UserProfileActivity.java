@@ -46,25 +46,6 @@ public class UserProfileActivity extends AppCompatActivity {
         LinearLayout logOutOption = findViewById(R.id.logoutOption);
         LinearLayout editOption = findViewById(R.id.editOption);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.navigation_home) {
-                Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
-                startActivity(intent);
-                return true;
-            } else if (id == R.id.navigation_lessons) {
-                return true;
-            } else if (id == R.id.navigation_questions) {
-                return true;
-            } else if (id == R.id.navigation_profile) {
-                return true;
-            }
-            return false;
-        });
-
         // Cargar información del usuario
         loadUserProfile();
 

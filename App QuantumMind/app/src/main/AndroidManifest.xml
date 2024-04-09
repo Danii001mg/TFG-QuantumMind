@@ -24,13 +24,13 @@
         </activity>
 
         <!-- Otras Actividades -->
-        <activity android:name="android.example.quantummind.QuizActivity" />
         <activity android:name="android.example.quantummind.AchievementsActivity" />
         <activity android:name="android.example.quantummind.RegisterActivity" />
         <activity android:name="android.example.quantummind.MainActivity" />
         <activity android:name="android.example.quantummind.UserProfileActivity" />
         <activity android:name="android.example.quantummind.SettingsActivity" />
         <activity android:name="android.example.quantummind.EditProfileActivity" />
+        <activity android:name="android.example.quantummind.Level1Activity" />
 
 
     </application>

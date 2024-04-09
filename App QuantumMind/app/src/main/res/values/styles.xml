@@ -13,18 +13,18 @@
         <item name="android:padding">12dp</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="editTextStyle">@style/AppEditText</item>
         <item name="buttonStyle">@style/AppButton</item>
+        <item name="android:fontFamily">@font/agave_bold</item>
     </style>
 
     <style name="ProfileNameText" parent="TextAppearance.AppCompat.Large">
         <!-- Add your styling here -->
     </style>
 
-    <!-- Style for the profile email -->
+    
     <style name="ProfileEmailText" parent="TextAppearance.AppCompat.Small">
-        <!-- Add your styling here -->
     </style>
 
 </resources>

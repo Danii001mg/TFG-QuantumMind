@@ -26,4 +26,5 @@
     <string name="remember_me">Recuérdame</string>
     <string name="forget_password">¿Olvidaste tu contraseña?</string>
     <string name="register">¿No tienes cuenta? Regístrate</string>
+    <string name="lesson">Lección</string>
 </resources>

@@ -1,59 +1,72 @@
 package android.example.quantummind;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import java.util.List;
-import java.util.UUID;
 
-public class Question implements Parcelable {
-    private String questionText;
-    private List<String> choices;
-    private String correctAnswer;
+public class Question {
     private String id;
+    private String lessonId;
+    private String questionText;
+    private List<String> answerOptions;
+    private int correctAnswerIndex; // Index of the correct answer in the list of options
+    private String nextQuestionId;
 
-    public Question(String questionText, List<String> choices, String correctAnswer) {
-        this.id = UUID.randomUUID().toString(); // Genera un ID único
+    public Question() {
+        // Empty constructor needed for Firebase
+    }
+
+    public Question(String id, String lessonId, String questionText, List<String> answerOptions, int correctAnswerIndex, String nextQuestionId) {
+        this.id = id;
+        this.lessonId = lessonId;
         this.questionText = questionText;
-        this.choices = choices;
-        this.correctAnswer = correctAnswer;
+        this.answerOptions = answerOptions;
+        this.correctAnswerIndex = correctAnswerIndex;
+        this.nextQuestionId = nextQuestionId;
     }
 
-    protected Question(Parcel in) {
-        id = in.readString();
-        questionText = in.readString();
-        choices = in.createStringArrayList();
-        correctAnswer = in.readString();
+    // Getters and setters
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(questionText);
-        dest.writeStringList(choices);
-        dest.writeString(correctAnswer);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getLessonId() {
+        return lessonId;
     }
 
-    // Getters
-    public String getQuestionText() { return questionText; }
-    public List<String> getChoices() { return choices; }
-    public String getCorrectAnswer() { return correctAnswer; }
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
+    }
 
-    public String getId() { return id; }
+    public String getQuestionText() {
+        return questionText;
+    }
 
-    public static final Creator<Question> CREATOR = new Creator<Question>() {
-        @Override
-        public Question createFromParcel(Parcel in) {
-            return new Question(in);
-        }
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
 
-        @Override
-        public Question[] newArray(int size) {
-            return new Question[size];
-        }
-    };
+    public List<String> getAnswerOptions() {
+        return answerOptions;
+    }
+
+    public void setAnswerOptions(List<String> answerOptions) {
+        this.answerOptions = answerOptions;
+    }
+
+    public int getCorrectAnswerIndex() {
+        return correctAnswerIndex;
+    }
+
+    public void setCorrectAnswerIndex(int correctAnswerIndex) {
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+
+    public String getNextQuestionId() { return nextQuestionId; }
+
+    public void setNextQuestionId(String nextQuestionId) {
+        this.nextQuestionId = nextQuestionId;
+    }
 }
