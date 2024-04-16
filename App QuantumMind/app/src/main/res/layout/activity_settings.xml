@@ -17,7 +17,6 @@
             android:gravity="center_horizontal"
             android:padding="16dp">
 
-            <!-- Opción Notificaciones -->
             <LinearLayout
                 android:id="@+id/notificationsLayout"
                 android:layout_width="match_parent"
@@ -41,7 +40,6 @@
                     android:src="@drawable/ic_arrow" />
             </LinearLayout>
 
-            <!-- Opción Privacidad -->
             <LinearLayout
                 android:id="@+id/privacyLayout"
                 android:layout_width="match_parent"
@@ -66,7 +64,6 @@
                     android:src="@drawable/ic_arrow" />
             </LinearLayout>
 
-            <!-- Opción Lenguaje -->
             <LinearLayout
                 android:id="@+id/languageLayout"
                 android:layout_width="match_parent"
@@ -91,7 +88,6 @@
                     android:src="@drawable/ic_arrow" />
             </LinearLayout>
 
-            <!-- Opción Ayuda y Soporte -->
             <LinearLayout
                 android:id="@+id/helpSupportLayout"
                 android:layout_width="match_parent"

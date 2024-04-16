@@ -27,4 +27,7 @@
     <string name="forget_password">Forgot your password?</string>
     <string name="register">Dont have account? Register here</string>
     <string name="lesson">Lesson</string>
+    <string name="accept">Accept</string>
+    <string name="check">Check</string>
+    <string name="registerButtonText">Register</string>
 </resources>

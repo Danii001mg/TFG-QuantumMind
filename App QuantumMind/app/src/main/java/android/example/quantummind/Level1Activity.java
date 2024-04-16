@@ -147,7 +147,7 @@ public class Level1Activity extends AppCompatActivity {
 
         } else {
             String correctAnswer = currentQuestion.getAnswerOptions().get(currentQuestion.getCorrectAnswerIndex());
-            correctAnswerText.setText("La respuesta correcta es: " + correctAnswer);
+            correctAnswerText.setText("The correct answer is: " + correctAnswer);
             correctAnswerText.setVisibility(View.VISIBLE);
         }
 
@@ -244,7 +244,6 @@ public class Level1Activity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         sheetDocuments.clear();
                         sheetDocuments.addAll(task.getResult().getDocuments());
-                        // Comprueba si hay hojas disponibles y muestra la primera
                         if (!sheetDocuments.isEmpty()) {
                             showSheet(sheetDocuments.get(0));
                         }

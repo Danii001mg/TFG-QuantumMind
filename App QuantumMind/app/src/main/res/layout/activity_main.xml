@@ -33,12 +33,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white" />
 
-        <!-- ImageView para logros se coloca antes del settings para que aparezca a su izquierda -->
-
-        <!-- ImageView para settings se coloca al final para que aparezca a la derecha -->
-
-        <!-- ImageView para settings se coloca al final y se le indica que esté a la izquierda del botón de logros -->
-
         <ImageView
             android:id="@+id/achievementsButton"
             android:layout_width="0dp"
@@ -67,7 +61,7 @@
         android:layout_marginTop="0dp"
         android:padding="16dp">
 
-        <!-- Nivel 1 -->
+        <!-- Level 1 -->
         <ImageView
             android:id="@+id/level1"
             android:layout_width="50dp"
@@ -82,7 +76,7 @@
             android:layout_toRightOf="@id/level1"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:text="Conceptos\ngenerales"
+            android:text="Main\nconcepts"
             android:fontFamily="@font/big_blue"
             android:textColor="@color/white"/>
 
@@ -95,7 +89,7 @@
             android:layout_marginTop="-10dp"
             android:layout_marginRight="5dp" />
 
-        <!-- Nivel 2 -->
+        <!-- Level 2 -->
         <ImageView
             android:id="@+id/level2"
             android:layout_width="50dp"
@@ -168,7 +162,7 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/circle_shape_lvl2"/>
 
-        <!-- Línea de conexión entre Nivel 1 y Nivel 2 -->
+        <!-- Link between level 1 and level 2 -->
         <View
             android:layout_width="2dp"
             android:layout_height="70dp"
@@ -176,7 +170,7 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 2 y Nivel 5 (1) -->
+        <!-- Link between level 2 and level 5 (1) -->
         <View
             android:layout_width="115dp"
             android:layout_height="2dp"
@@ -184,7 +178,7 @@
             android:layout_marginTop="140dp"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 2 y Nivel 5 (2) -->
+        <!-- Link between level 2 and level 5 (2) -->
         <View
             android:layout_width="2dp"
             android:layout_height="120dp"
@@ -193,7 +187,7 @@
             android:layout_toRightOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 2 y Nivel 3 (1) -->
+        <!-- Link between level 2 and level 3 (1) -->
         <View
             android:layout_width="115dp"
             android:layout_height="2dp"
@@ -201,7 +195,7 @@
             android:layout_toLeftOf="@id/level2"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 2 y Nivel 3 (2) -->
+        <!-- Link between level 2 and level 3 (2) -->
         <View
             android:layout_width="2dp"
             android:layout_height="120dp"
@@ -210,7 +204,7 @@
             android:layout_toLeftOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 2 y Nivel 4 -->
+        <!-- Link between level 2 and level 4 -->
         <View
             android:layout_width="2dp"
             android:layout_height="90dp"
@@ -218,7 +212,7 @@
             android:layout_below="@id/level2"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 3 y Nivel 6 -->
+        <!-- Link between level 3 and level 6 -->
         <View
             android:layout_width="2dp"
             android:layout_height="120dp"
@@ -227,7 +221,7 @@
             android:layout_toLeftOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 5 y Nivel 7 -->
+        <!-- Link between level 5 and level 7 -->
         <View
             android:layout_width="2dp"
             android:layout_height="120dp"
@@ -236,7 +230,7 @@
             android:layout_toRightOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 6 y Nivel 8 (1) -->
+        <!-- Link between level 6 and level 8 (1) -->
         <View
             android:layout_width="2dp"
             android:layout_height="100dp"
@@ -245,7 +239,7 @@
             android:layout_toLeftOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 6 y Nivel 8 (2) -->
+        <!-- Link between level 6 and level 8 (2) -->
         <View
             android:layout_width="117dp"
             android:layout_height="2dp"
@@ -253,7 +247,7 @@
             android:layout_toLeftOf="@id/level8"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 7 y Nivel 8 (1) -->
+        <!-- Link between level 7 and level 8 (1) -->
         <View
             android:layout_width="2dp"
             android:layout_height="100dp"
@@ -262,16 +256,13 @@
             android:layout_toRightOf="@id/level4"
             android:background="@android:color/white" />
 
-        <!-- Línea de conexión entre Nivel 7 y Nivel 8 (2) -->
+        <!-- Link between level 7 and level 8 (2) -->
         <View
             android:layout_width="117dp"
             android:layout_height="2dp"
             android:layout_toRightOf="@id/level8"
             android:layout_marginTop="580dp"
             android:background="@android:color/white" />
-
-
-
     </RelativeLayout>
 
 
