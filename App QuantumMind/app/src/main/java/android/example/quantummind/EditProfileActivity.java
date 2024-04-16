@@ -106,7 +106,7 @@ public class EditProfileActivity extends AppCompatActivity {
         } else if (!newUserName.isEmpty() && !newUserName.equals(user.getDisplayName())) {
             updateUserName(newUserName);
         } else {
-            Toast.makeText(this, "No se han detectado cambios.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No changes detected.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -117,7 +117,7 @@ public class EditProfileActivity extends AppCompatActivity {
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(uri).build();
             auth.getCurrentUser().updateProfile(profileUpdates).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(EditProfileActivity.this, "Imagen de perfil actualizada.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Profile image updated.", Toast.LENGTH_SHORT).show();
 
                     if (emailChanged || passwordChanged) {
                         showReauthDialog(newUserName, newUserEmail, newUserPassword, emailChanged, passwordChanged);
@@ -126,7 +126,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 }
             });
-        })).addOnFailureListener(e -> Toast.makeText(EditProfileActivity.this, "Fallo al subir la imagen: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        })).addOnFailureListener(e -> Toast.makeText(EditProfileActivity.this, "Error while uploading image: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     private void updateUserName(String newUserName) {
@@ -135,7 +135,7 @@ public class EditProfileActivity extends AppCompatActivity {
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(newUserName).build();
             user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(EditProfileActivity.this, "Nombre de usuario actualizado.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Username updated.", Toast.LENGTH_SHORT).show();
                     redirectToUserProfile();
                 }
             });
@@ -147,14 +147,14 @@ public class EditProfileActivity extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
-                .setTitle("Se requiere reautenticación")
-                .setMessage("Por favor, introduce tu contraseña actual:")
+                .setTitle("Auth required")
+                .setMessage("Please, introduce your actual password:")
                 .setView(input)
-                .setPositiveButton("Confirmar", (dialog, which) -> {
+                .setPositiveButton("Confirm", (dialog, which) -> {
                     String currentPassword = input.getText().toString();
                     reauthenticateUser(newUserName, newUserEmail, newUserPassword, emailChanged, passwordChanged, currentPassword);
                 })
-                .setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel())
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .show();
     }
 
@@ -178,9 +178,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }).addOnFailureListener(e -> {
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(EditProfileActivity.this, "La contraseña proporcionada no es válida.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditProfileActivity.this, "Given password is not valid.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(EditProfileActivity.this, "Error de re-autenticación: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditProfileActivity.this, "Re-auth Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -196,10 +196,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     editor.putBoolean("manualLoginRequired", true);
                     editor.apply();
 
-                    Toast.makeText(EditProfileActivity.this, "Correo electrónico actualizado. Por favor, verifica tu nuevo correo.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Email updated. Please, verify your new email", Toast.LENGTH_SHORT).show();
                     forceReLogin();
                 } else {
-                    Toast.makeText(EditProfileActivity.this, "Fallo al actualizar el correo electrónico.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Error while updating email.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -212,7 +212,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if (user != null) {
             user.updatePassword(newUserPassword).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(EditProfileActivity.this, "Contraseña actualizada correctamente.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Password updated successfully.", Toast.LENGTH_SHORT).show();
                     forceReLogin();
                 }
             });

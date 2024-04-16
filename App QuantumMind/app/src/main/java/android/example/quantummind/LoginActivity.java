@@ -36,24 +36,24 @@ public class LoginActivity extends AppCompatActivity {
 
     private void resetPassword() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-        builder.setTitle("Introduzca su email");
+        builder.setTitle("Introduce your email");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         builder.setView(input);
 
-        builder.setPositiveButton("Enviar", (dialog, which) -> {
+        builder.setPositiveButton("Send", (dialog, which) -> {
             String email = input.getText().toString();
             FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Se ha enviado un correo para restablecer tu contraseña.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "An email has been sent to reset your password.", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Fallo al enviar correo de restablecimiento.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Error while sending the reset email.", Toast.LENGTH_LONG).show();
                         }
                     });
         });
 
-        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         builder.show();
     }
@@ -129,6 +129,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginFailed() {
-        Toast.makeText(this, "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Username or password incorrect", Toast.LENGTH_LONG).show();
     }
 }

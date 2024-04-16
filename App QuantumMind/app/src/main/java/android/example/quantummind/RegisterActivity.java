@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please, fill all the fields.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -47,25 +47,23 @@ public class RegisterActivity extends AppCompatActivity {
                             user.updateProfile(profileUpdates)
                                     .addOnCompleteListener(profileTask -> {
                                         if (profileTask.isSuccessful()) {
-                                            // El perfil del usuario se ha actualizado con éxito
-                                            Log.d("RegisterActivity", "Nombre de usuario actualizado.");
+                                            Log.d("RegisterActivity", "Username updated.");
 
-                                            // Inicia sesión automáticamente al usuario y redirige a MainActivity
                                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                             startActivity(intent);
-                                            finish(); // Cierra la actividad actual para que el usuario no pueda regresar
+                                            finish();
                                         } else {
                                             if (profileTask.getException() != null) {
-                                                Toast.makeText(RegisterActivity.this, "Error al actualizar el perfil: " + profileTask.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(RegisterActivity.this, "Error updating profile: " + profileTask.getException().getMessage(), Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Error al obtener información del usuario.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Error obtaining user info.", Toast.LENGTH_LONG).show();
                         }
                     } else {
                         if (task.getException() != null) {
-                            Toast.makeText(RegisterActivity.this, "Fallo en el registro: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Error in register: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

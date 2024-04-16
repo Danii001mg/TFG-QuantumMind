@@ -46,7 +46,6 @@ public class UserProfileActivity extends AppCompatActivity {
         LinearLayout logOutOption = findViewById(R.id.logoutOption);
         LinearLayout editOption = findViewById(R.id.editOption);
 
-        // Cargar información del usuario
         loadUserProfile();
 
         editOption.setOnClickListener(view -> startActivity(new Intent(UserProfileActivity.this, EditProfileActivity.class)));
@@ -99,9 +98,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private void showLogOutDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-        builder.setTitle("Cerrar Sesión")
-                .setMessage("¿Estás seguro de que quieres cerrar sesión?")
-                .setPositiveButton("Sí", (dialog, which) -> logOut())
+        builder.setTitle("Log Out")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes", (dialog, which) -> logOut())
                 .setNegativeButton("No", null)
                 .show();
     }

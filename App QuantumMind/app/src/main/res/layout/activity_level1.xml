@@ -4,25 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Level1Activity">
-    
-    <ScrollView
-        android:id="@+id/scrollview"
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        android:textSize="30sp"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/lessonText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottomRightButton"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_below="@id/title"/>
 
-        <TextView
-            android:id="@+id/lessonText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:textColor="#000"
-            android:layout_marginBottom="120dp"/>
+    <ImageView
+        android:id="@+id/lessonImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lessonText"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
-    </ScrollView>
+    <WebView
+        android:id="@+id/lessonVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lessonText"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
     <LinearLayout
         android:id="@+id/progressBar"
@@ -138,5 +154,19 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true" />
+
+    <ImageView
+        android:id="@+id/bottomLeftButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
+        android:src="@drawable/ic_arrow_button_left"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

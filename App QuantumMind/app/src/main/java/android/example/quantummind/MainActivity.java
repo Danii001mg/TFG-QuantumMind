@@ -76,19 +76,19 @@ public class MainActivity extends AppCompatActivity {
         ImageView level1Points = findViewById(R.id.level1_points);
 
         if (score >= 80) {
-            // Usuario obtuvo 3 estrellas
+            // 3 stars
             level1Points.setImageResource(R.drawable.ic_stars);
             level1.setColorFilter(Color.GREEN);
         } else if (score >= 60) {
-            // Usuario obtuvo 2 estrellas
+            // 2 stars
             level1Points.setImageResource(R.drawable.ic_two_stars);
             level1.setColorFilter(Color.GREEN);
         } else if (score >= 30) {
-            // Usuario obtuvo 1 estrella
+            // 1 star
             level1Points.setImageResource(R.drawable.ic_one_star);
             level1.setColorFilter(Color.GREEN);
         } else {
-            // Usuario no alcanzó la puntuación mínima
+            // No minimum points
             level1Points.setImageResource(0);
         }
     }

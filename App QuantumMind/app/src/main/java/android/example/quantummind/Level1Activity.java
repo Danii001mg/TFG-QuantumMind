@@ -4,29 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,50 +42,74 @@ public class Level1Activity extends AppCompatActivity {
     private TextView correctAnswerText;
     private TextView questionText;
     private RadioGroup answersGroup;
+    private Button acceptButton;
+    private TextView title;
+    private ImageView lessonImage;
+    private WebView lessonVideo;
+    private TextView lessonTextView;
+    private ImageView nextButton;
+    private ImageView previousButton;
+    private LinearLayout progressBar;
+    private Button checkButton;
     private List<Question> questionsList = new ArrayList<>();
+    private List<DocumentSnapshot> sheetDocuments = new ArrayList<>();
     private int currentQuestionIndex = 0;
+    private int currentSheetIndex = 0;
+    private String lessonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1);
 
-        String lessonId = getIntent().getStringExtra("LESSON_ID");
+        lessonId = getIntent().getStringExtra("LESSON_ID");
 
-        TextView lessonTextView = findViewById(R.id.lessonText);
-        ScrollView scrollView = findViewById(R.id.scrollview);
-        ImageView button = findViewById(R.id.bottomRightButton);
+        lessonTextView = findViewById(R.id.lessonText);
+        nextButton = findViewById(R.id.bottomRightButton);
+        previousButton = findViewById(R.id.bottomLeftButton);
         questionText = findViewById(R.id.questionText);
         answersGroup = findViewById(R.id.answersGroup);
-        Button acceptButton = findViewById(R.id.acceptButton);
-        LinearLayout progressBar = findViewById(R.id.progressBar);
-        Button checkButton = findViewById(R.id.checkButton);
+        acceptButton = findViewById(R.id.acceptButton);
+        progressBar = findViewById(R.id.progressBar);
+        checkButton = findViewById(R.id.checkButton);
         questionCounter = findViewById(R.id.questionCounter);
         percentageCorrect = findViewById(R.id.percentageCorrect);
         questionProgressBar = findViewById(R.id.questionProgressBar);
         correctAnswerText = findViewById(R.id.correctAnswerText);
+        title = findViewById(R.id.title);
+        lessonImage = findViewById(R.id.lessonImage);
+        lessonVideo = findViewById(R.id.lessonVideo);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         }
 
         if (lessonId != null && !lessonId.isEmpty()) {
-            loadLessonContent(lessonTextView);
+            loadSheetsForLesson(lessonId);
             loadQuestionsForLesson(lessonId);
         } else {
             Toast.makeText(this, "No lesson ID provided", Toast.LENGTH_LONG).show();
             finish();
         }
 
-        button.setOnClickListener(v -> {
-            scrollView.setVisibility(View.GONE);
-            button.setVisibility(View.GONE);
+        nextButton.setOnClickListener(v -> {
+            if (currentSheetIndex < sheetDocuments.size() - 1) {
+                currentSheetIndex++;
+                showSheet(sheetDocuments.get(currentSheetIndex));
+                previousButton.setVisibility(View.VISIBLE);
+            } else {
+                showQuestions();
+            }
+        });
 
-            questionText.setVisibility(View.VISIBLE);
-            answersGroup.setVisibility(View.VISIBLE);
-            acceptButton.setVisibility(View.VISIBLE);
-            checkButton.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
+        previousButton.setOnClickListener(v -> {
+            if (currentSheetIndex > 0) {
+                currentSheetIndex--;
+                showSheet(sheetDocuments.get(currentSheetIndex));
+            }
+            if (currentSheetIndex == 0) {
+                previousButton.setVisibility(View.GONE);
+            }
         });
 
         acceptButton.setEnabled(false);
@@ -216,21 +235,53 @@ public class Level1Activity extends AppCompatActivity {
         }
     }
 
-    private void loadLessonContent(TextView lessonTextView) {
-        DocumentReference lessonRef = db.collection("lessons").document("example");
-        lessonRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    Lesson lesson = document.toObject(Lesson.class);
-                    lessonTextView.setText(lesson.getContent());
-                } else {
-                    lessonTextView.setText("Lesson content not found.");
-                }
-            } else {
-                lessonTextView.setText("Error loading lesson content.");
-            }
-        });
+    private void loadSheetsForLesson(String lessonId) {
+        db.collection("sheets")
+                .whereEqualTo("lessonId", lessonId)
+                .orderBy("id")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        sheetDocuments.clear();
+                        sheetDocuments.addAll(task.getResult().getDocuments());
+                        // Comprueba si hay hojas disponibles y muestra la primera
+                        if (!sheetDocuments.isEmpty()) {
+                            showSheet(sheetDocuments.get(0));
+                        }
+                    } else {
+                        Log.w("SheetLoad", "Error getting sheets.", task.getException());
+                    }
+                });
+    }
+
+    private void showSheet(DocumentSnapshot sheetDocument) {
+        String sheetText = sheetDocument.getString("text");
+        String sheetTitle = sheetDocument.getString("title");
+        String imageUrl = sheetDocument.getString("image");
+        String videoUrl = sheetDocument.getString("video");
+
+        lessonTextView.setText(sheetText);
+        title.setText(sheetTitle);
+
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(lessonImage);
+            lessonImage.setVisibility(View.VISIBLE);
+        } else {
+            lessonImage.setVisibility(View.GONE);
+        }
+
+        if (videoUrl != null && !videoUrl.isEmpty()) {
+            String frameVideo = "<html><body><iframe width=\"match_parent\" height=\"wrap_content\" src=\"" + videoUrl + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+            lessonVideo.setVisibility(View.VISIBLE);
+            lessonVideo.getSettings().setJavaScriptEnabled(true);
+            lessonVideo.loadData(frameVideo, "text/html", "utf-8");
+        } else {
+            lessonVideo.setVisibility(View.GONE);
+        }
+
+        previousButton.setVisibility(currentSheetIndex > 0 ? View.VISIBLE : View.GONE);
     }
 
 
@@ -243,6 +294,23 @@ public class Level1Activity extends AppCompatActivity {
         userProgressRef.set(levelProgress, SetOptions.merge())
                 .addOnSuccessListener(aVoid -> Log.d("Progress", "Level progress updated."))
                 .addOnFailureListener(e -> Log.w("Progress", "Error updating level progress.", e));
+    }
+
+    private void showQuestions() {
+        lessonTextView.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);
+        lessonImage.setVisibility(View.GONE);
+        lessonVideo.setVisibility(View.GONE);
+        nextButton.setVisibility(View.GONE);
+        previousButton.setVisibility(View.GONE);
+
+        questionText.setVisibility(View.VISIBLE);
+        answersGroup.setVisibility(View.VISIBLE);
+        acceptButton.setVisibility(View.VISIBLE);
+        checkButton.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
+        loadQuestionsForLesson(lessonId);
     }
 
 }

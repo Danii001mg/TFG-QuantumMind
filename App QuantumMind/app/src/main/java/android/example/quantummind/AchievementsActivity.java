@@ -16,9 +16,8 @@ public class AchievementsActivity extends AppCompatActivity {
 
         achievementsListView = findViewById(R.id.achievementsListView);
 
-        String[] achievements = new String[] {"Logro 1", "Logro 2", "Logro 3"};
+        String[] achievements = new String[] {"Achievement 1", "Achievement 2", "Achievement 3"};
 
-        // Usando un ArrayAdapter simple para mostrar los logros
         achievementsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, achievements));
     }
 }
