@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Level1Activity">
+    tools:context=".LevelActivity">
 
     <TextView
         android:id="@+id/title"
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textColor="#000"
         android:layout_below="@id/title"/>
 
@@ -139,6 +139,18 @@
         android:layout_below="@id/acceptButton"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:id="@+id/backToLesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Lesson"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/bottomNavBackground" />
+
     <ImageView
         android:id="@+id/bottomRightButton"
         android:layout_width="60dp"
@@ -151,6 +163,17 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true" />
+
+    <Button
+        android:id="@+id/backToQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Questions"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"
+        android:background="@color/bottomNavBackground" />
 
     <ImageView
         android:id="@+id/bottomLeftButton"

@@ -1,7 +1,9 @@
 package android.example.quantummind;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -106,6 +108,10 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void logOut() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
         auth.signOut();
         startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
         finish();

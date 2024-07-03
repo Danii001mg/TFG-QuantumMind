@@ -29,7 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
 
-        checkManualLoginRequired();
+        // Cargar credenciales al iniciar la app sólo si está permitido
+        loadCredentialsIfNeeded();
 
         forgotPasswordText.setOnClickListener(v -> resetPassword());
     }
@@ -58,49 +59,35 @@ public class LoginActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void checkManualLoginRequired() {
+    private void loadCredentialsIfNeeded() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        boolean manualLoginRequired = preferences.getBoolean("manualLoginRequired", false);
+        boolean rememberCredentials = preferences.getBoolean("rememberCredentials", false);
 
-        if (!manualLoginRequired) {
-            loadCredentials();
-        } else {
-            clearCredentials();
+        if (rememberCredentials) {
+            SharedPreferences credentialsPrefs = getSharedPreferences("credentials", MODE_PRIVATE);
+            String email = credentialsPrefs.getString("email", "");
+            String password = credentialsPrefs.getString("password", "");
+
+            emailEditText.setText(email);
+            passwordEditText.setText(password);
+            rememberMeCheckBox.setChecked(true);
         }
-    }
-
-    private void loadCredentials() {
-        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
-        String email = preferences.getString("email", "");
-        String password = preferences.getString("password", "");
-        boolean isChecked = preferences.getBoolean("remember", false);
-
-        emailEditText.setText(email);
-        passwordEditText.setText(password);
-        rememberMeCheckBox.setChecked(isChecked);
     }
 
     public void login(View view) {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        if (rememberMeCheckBox.isChecked()) {
-            saveCredentials(email, password);
-        } else {
-            clearCredentials();
-        }
-
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean("manualLoginRequired", false);
-                        editor.apply();
+                        if (rememberMeCheckBox.isChecked()) {
+                            saveCredentials(email, password);
+                        } else {
+                            clearCredentials();
+                        }
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        startMainActivity();
                     } else {
                         loginFailed();
                     }
@@ -108,19 +95,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveCredentials(String email, String password) {
-        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences credentialsPrefs = getSharedPreferences("credentials", MODE_PRIVATE);
+        SharedPreferences.Editor editor = credentialsPrefs.edit();
         editor.putString("email", email);
         editor.putString("password", password);
-        editor.putBoolean("remember", true);
         editor.apply();
+
+        SharedPreferences checkboxPrefs = getSharedPreferences("checkbox", MODE_PRIVATE);
+        SharedPreferences.Editor checkboxEditor = checkboxPrefs.edit();
+        checkboxEditor.putBoolean("rememberCredentials", true);
+        checkboxEditor.apply();
     }
 
     private void clearCredentials() {
-        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.apply();
+        SharedPreferences credentialsPrefs = getSharedPreferences("credentials", MODE_PRIVATE);
+        credentialsPrefs.edit().clear().apply();
+
+        SharedPreferences checkboxPrefs = getSharedPreferences("checkbox", MODE_PRIVATE);
+        checkboxPrefs.edit().putBoolean("rememberCredentials", false).apply();
+    }
+
+    private void startMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void openRegister(View view) {
@@ -128,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void loginFailed() {
+    private void loginFailed() {
         Toast.makeText(this, "Username or password incorrect", Toast.LENGTH_LONG).show();
     }
 }

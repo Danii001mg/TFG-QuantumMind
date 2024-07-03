@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Level1Activity extends AppCompatActivity {
+public class LevelActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Question currentQuestion;
@@ -42,7 +42,7 @@ public class Level1Activity extends AppCompatActivity {
     private TextView correctAnswerText;
     private TextView questionText;
     private RadioGroup answersGroup;
-    private Button acceptButton;
+    private Button acceptButton, backToLesson, backToQuestions;
     private TextView title;
     private ImageView lessonImage;
     private WebView lessonVideo;
@@ -56,6 +56,7 @@ public class Level1Activity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private int currentSheetIndex = 0;
     private String lessonId;
+    private boolean backToLessonUsed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,8 @@ public class Level1Activity extends AppCompatActivity {
         title = findViewById(R.id.title);
         lessonImage = findViewById(R.id.lessonImage);
         lessonVideo = findViewById(R.id.lessonVideo);
+        backToLesson = findViewById(R.id.backToLesson);
+        backToQuestions = findViewById(R.id.backToQuestions);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -129,6 +132,23 @@ public class Level1Activity extends AppCompatActivity {
             acceptButton.setEnabled(false);
         });
 
+        backToLesson.setOnClickListener(v -> {
+            backToLessonUsed = true;
+            questionText.setVisibility(View.GONE);
+            answersGroup.setVisibility(View.GONE);
+            acceptButton.setVisibility(View.GONE);
+            checkButton.setVisibility(View.GONE);
+            backToLesson.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            correctAnswerText.setVisibility(View.GONE);
+            showSheet(sheetDocuments.get(currentSheetIndex)); // Returns to the current lesson sheet
+            backToQuestions.setVisibility(View.VISIBLE); // Shows the button to go back to questions
+        });
+
+        backToQuestions.setOnClickListener(v -> {
+            showQuestions(); // Returns to the current question
+            backToQuestions.setVisibility(View.GONE); // Hides itself as it's now irrelevant
+        });
     }
 
     private void checkAnswer(RadioGroup answersGroup) {
@@ -138,7 +158,7 @@ public class Level1Activity extends AppCompatActivity {
         if (radioButtonID != -1) {
             selectedAnswerIndex = answersGroup.indexOfChild(findViewById(radioButtonID));
         } else {
-            Toast.makeText(Level1Activity.this, "Please select an answer.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LevelActivity.this, "Please select an answer.", Toast.LENGTH_SHORT).show();
         }
 
         if (selectedAnswerIndex == currentQuestion.getCorrectAnswerIndex()) {
@@ -160,8 +180,8 @@ public class Level1Activity extends AppCompatActivity {
         userAnswer.put("selectedAnswerIndex", selectedAnswerIndex);
 
         db.collection("userAnswers").add(userAnswer)
-                .addOnSuccessListener(documentReference -> Toast.makeText(Level1Activity.this, "Answer saved", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(Level1Activity.this, "Failed to save answer", Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(documentReference -> Toast.makeText(LevelActivity.this, "Answer saved", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(LevelActivity.this, "Failed to save answer", Toast.LENGTH_SHORT).show());
     }
 
     private void updatePercentageCorrect() {
@@ -189,7 +209,11 @@ public class Level1Activity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("LEVEL1_SCORE", percentage);
+        if (lessonId.equals("lesson1")) {
+            intent.putExtra("LEVEL1_SCORE", percentage);
+        } else if (lessonId.equals("lesson2")) {
+            intent.putExtra("LEVEL2_SCORE", percentage);
+        }
         startActivity(intent);
         finish();
     }
@@ -254,11 +278,14 @@ public class Level1Activity extends AppCompatActivity {
     }
 
     private void showSheet(DocumentSnapshot sheetDocument) {
+        lessonTextView.setVisibility(View.VISIBLE);
+        title.setVisibility(View.VISIBLE);
         String sheetText = sheetDocument.getString("text");
         String sheetTitle = sheetDocument.getString("title");
         String imageUrl = sheetDocument.getString("image");
         String videoUrl = sheetDocument.getString("video");
 
+        sheetText = sheetText.replace("||", "\n");
         lessonTextView.setText(sheetText);
         title.setText(sheetTitle);
 
@@ -281,14 +308,22 @@ public class Level1Activity extends AppCompatActivity {
         }
 
         previousButton.setVisibility(currentSheetIndex > 0 ? View.VISIBLE : View.GONE);
+        if (backToLessonUsed) {
+            nextButton.setVisibility(currentSheetIndex < sheetDocuments.size() - 1 ? View.VISIBLE : View.GONE);
+        }
     }
-
 
     private void saveUserProgress(String userId, double score) {
         DocumentReference userProgressRef = db.collection("userProgress").document(userId);
         Map<String, Object> levelProgress = new HashMap<>();
-        levelProgress.put("level1_completed", true);
-        levelProgress.put("level1_score", score);
+
+        if (lessonId.equals("lesson1")) {
+            levelProgress.put("level1_completed", true);
+            levelProgress.put("level1_score", score);
+        } else if (lessonId.equals("lesson2")) {
+            levelProgress.put("level2_completed", true);
+            levelProgress.put("level2_score", score);
+        }
 
         userProgressRef.set(levelProgress, SetOptions.merge())
                 .addOnSuccessListener(aVoid -> Log.d("Progress", "Level progress updated."))
@@ -302,14 +337,15 @@ public class Level1Activity extends AppCompatActivity {
         lessonVideo.setVisibility(View.GONE);
         nextButton.setVisibility(View.GONE);
         previousButton.setVisibility(View.GONE);
+        backToQuestions.setVisibility(View.GONE);
 
         questionText.setVisibility(View.VISIBLE);
         answersGroup.setVisibility(View.VISIBLE);
         acceptButton.setVisibility(View.VISIBLE);
         checkButton.setVisibility(View.VISIBLE);
+        backToLesson.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
         loadQuestionsForLesson(lessonId);
     }
-
 }

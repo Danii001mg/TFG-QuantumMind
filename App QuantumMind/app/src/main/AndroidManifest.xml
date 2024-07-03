@@ -30,7 +30,7 @@
         <activity android:name="android.example.quantummind.UserProfileActivity" />
         <activity android:name="android.example.quantummind.SettingsActivity" />
         <activity android:name="android.example.quantummind.EditProfileActivity" />
-        <activity android:name="android.example.quantummind.Level1Activity" />
+        <activity android:name="android.example.quantummind.LevelActivity" />
 
 
     </application>
