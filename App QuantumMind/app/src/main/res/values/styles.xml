@@ -21,9 +21,17 @@
 
     <style name="ProfileNameText" parent="TextAppearance.AppCompat.Large">
     </style>
-
     
     <style name="ProfileEmailText" parent="TextAppearance.AppCompat.Small">
     </style>
-
+    <style name="QuestionButtonStyle">
+        <item name="android:layout_width">33dp</item>
+        <item name="android:layout_height">33dp</item>
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:padding">1dp</item>
+    </style>
 </resources>

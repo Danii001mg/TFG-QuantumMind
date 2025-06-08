@@ -7,15 +7,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
 
         <!-- Actividad Principal -->
-        <activity android:name="android.example.quantummind.LoginActivity"
+        <activity android:name="android.example.quantummind.presentation.LoginActivity"
                   android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,14 +24,14 @@
         </activity>
 
         <!-- Otras Actividades -->
-        <activity android:name="android.example.quantummind.AchievementsActivity" />
-        <activity android:name="android.example.quantummind.RegisterActivity" />
-        <activity android:name="android.example.quantummind.MainActivity" />
-        <activity android:name="android.example.quantummind.UserProfileActivity" />
-        <activity android:name="android.example.quantummind.SettingsActivity" />
-        <activity android:name="android.example.quantummind.EditProfileActivity" />
-        <activity android:name="android.example.quantummind.LevelActivity" />
-
+        <activity android:name="android.example.quantummind.presentation.AchievementsActivity" />
+        <activity android:name="android.example.quantummind.presentation.RegisterActivity" />
+        <activity android:name="android.example.quantummind.presentation.MainActivity" />
+        <activity android:name="android.example.quantummind.presentation.UserProfileActivity" />
+        <activity android:name="android.example.quantummind.presentation.EditProfileActivity" />
+        <activity android:name="android.example.quantummind.presentation.LevelActivity" />
+        <activity android:name="android.example.quantummind.presentation.RankingActivity" />
+        <activity android:name="android.example.quantummind.presentation.ImageZoomActivity" />
 
     </application>
 

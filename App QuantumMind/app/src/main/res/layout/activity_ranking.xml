@@ -64,21 +64,22 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textAchievements"
+        android:id="@+id/textRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Achievements" />
+        android:text="Ranking" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/achievementsRecyclerView"
+
+<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rankingRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="vertical"
         android:layout_marginTop="-10dp"
         android:padding="16dp"
-        android:layout_below="@id/textAchievements" />
+        android:layout_below="@id/textRanking"/>
 </LinearLayout>

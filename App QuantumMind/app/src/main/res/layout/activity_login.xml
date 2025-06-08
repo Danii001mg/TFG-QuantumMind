@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    tools:context=".LoginActivity">
+    tools:context=".presentation.LoginActivity">
 
     <ImageView
         android:layout_width="150dp"

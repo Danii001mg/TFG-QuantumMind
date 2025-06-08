@@ -1,4 +1,4 @@
-package android.example.quantummind;
+package android.example.quantummind.domain;
 
 import java.util.List;
 
@@ -7,20 +7,21 @@ public class Question {
     private String lessonId;
     private String questionText;
     private List<String> answerOptions;
-    private int correctAnswerIndex; // Index of the correct answer in the list of options
+    private int correctAnswerIndex;
     private String nextQuestionId;
+    private String image;
 
     public Question() {
-        // Empty constructor needed for Firebase
     }
 
-    public Question(String id, String lessonId, String questionText, List<String> answerOptions, int correctAnswerIndex, String nextQuestionId) {
+    public Question(String id, String lessonId, String questionText, List<String> answerOptions, int correctAnswerIndex, String nextQuestionId, String image) {
         this.id = id;
         this.lessonId = lessonId;
         this.questionText = questionText;
         this.answerOptions = answerOptions;
         this.correctAnswerIndex = correctAnswerIndex;
         this.nextQuestionId = nextQuestionId;
+        this.image = image;
     }
 
     // Getters and setters
@@ -68,5 +69,13 @@ public class Question {
 
     public void setNextQuestionId(String nextQuestionId) {
         this.nextQuestionId = nextQuestionId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

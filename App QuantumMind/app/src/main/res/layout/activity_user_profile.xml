@@ -75,37 +75,6 @@
                     android:src="@drawable/ic_arrow" />
             </LinearLayout>
 
-            <!-- Settings Option -->
-            <LinearLayout
-                android:id="@+id/settingsOption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="12dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_settings"
-                    android:contentDescription="@string/settings" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/settings"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow" />
-            </LinearLayout>
-
             <!-- Log Out Option -->
             <LinearLayout
                 android:id="@+id/logoutOption"
