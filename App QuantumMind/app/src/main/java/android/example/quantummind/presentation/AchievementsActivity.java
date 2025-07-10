@@ -3,8 +3,8 @@ package android.example.quantummind.presentation;
 import android.content.Intent;
 import android.example.quantummind.domain.AchievementAdapter;
 import android.example.quantummind.domain.AchievementItem;
-import android.example.quantummind.domain.MainController;
-import android.example.quantummind.domain.AchievementCallback;
+import android.example.quantummind.domain.controllers.MainController;
+import android.example.quantummind.domain.callbacks.AchievementCallback;
 import android.example.quantummind.R;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AchievementsActivity extends AppCompatActivity {
@@ -36,10 +37,14 @@ public class AchievementsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievements);
 
-        mainController = new MainController();
+        mainController = new MainController(this);
         ImageView profileImage = findViewById(R.id.userProfileImage);
         ImageView homeButton = findViewById(R.id.homeButton);
         ImageView rankingButton = findViewById(R.id.rankingButton);
+
+        profileImage.setOnClickListener(v ->
+                startActivity(new Intent(AchievementsActivity.this, UserProfileActivity.class))
+        );
 
         homeButton.setOnClickListener(v -> {
             startActivity(new Intent(AchievementsActivity.this, MainActivity.class));
@@ -77,10 +82,12 @@ public class AchievementsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AchievementItem[] achievements) {
                 achievementList.clear();
-                for (AchievementItem achievement : achievements) {
-                    achievementList.add(achievement);
-                }
+                achievementList.addAll(Arrays.asList(achievements));
                 achievementAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onUnlocked(String achievementName) {
             }
 
             @Override
@@ -89,4 +96,5 @@ public class AchievementsActivity extends AppCompatActivity {
             }
         });
     }
+
 }

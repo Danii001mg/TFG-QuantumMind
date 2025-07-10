@@ -40,7 +40,7 @@
         android:id="@+id/scoreTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="2.3"
         android:gravity="center"
         android:background="@drawable/cell_border"
         android:padding="8dp"

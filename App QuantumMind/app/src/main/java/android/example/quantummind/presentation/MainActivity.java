@@ -3,7 +3,6 @@ package android.example.quantummind.presentation;
 import android.content.Intent;
 import android.example.quantummind.R;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,17 +16,23 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import android.example.quantummind.domain.MainController;
-import android.example.quantummind.domain.User;
-import android.example.quantummind.domain.UserProgress;
-import android.example.quantummind.domain.MainController.UserCallback;
-import android.example.quantummind.domain.MainController.ProgressCallback;
+import android.example.quantummind.domain.controllers.MainController;
+import android.example.quantummind.domain.entities.User;
+import android.example.quantummind.domain.entities.UserProgress;
+import android.example.quantummind.domain.controllers.MainController.UserCallback;
+import android.example.quantummind.domain.controllers.MainController.ProgressCallback;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView level1, level2, level3, level4, level5, level6;
     private ImageView level1Points, level2Points, level3Points, level4Points, level5Points, level6Points;
     private ImageView profileImageView, achievementsButton, rankingButton;
+    private boolean isLevel1Unlocked = false;
+    private boolean isLevel2Unlocked = false;
+    private boolean isLevel3Unlocked = false;
+    private boolean isLevel4Unlocked = false;
+    private boolean isLevel5Unlocked = false;
+    private boolean isLevel6Unlocked = false;
 
     private MainController controller;
 
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        controller = new MainController();
+        controller = new MainController(this);
 
         profileImageView = findViewById(R.id.userProfileImage);
         TextView profileNameTextView = findViewById(R.id.userProfileName);
@@ -69,12 +74,49 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RankingActivity.class))
         );
 
-        level1.setOnClickListener(v -> openLevel("lesson1"));
-        level2.setOnClickListener(v -> openLevel("lesson2"));
-        level3.setOnClickListener(v -> openLevel("lesson3"));
-        level4.setOnClickListener(v -> openLevel("lesson4"));
-        level5.setOnClickListener(v -> openLevel("lesson5"));
-        level6.setOnClickListener(v -> openLevel("lesson6"));
+        level1.setOnClickListener(v -> {
+            if (isLevel1Unlocked) {
+                openLevel("lesson1");
+            } else {
+                showLockedMessage();
+            }
+        });
+        level2.setOnClickListener(v -> {
+            if (isLevel2Unlocked) {
+                openLevel("lesson2");
+            } else {
+                showLockedMessage();
+            }
+        });
+        level3.setOnClickListener(v -> {
+            if (isLevel3Unlocked) {
+                openLevel("lesson3");
+            } else {
+                showLockedMessage();
+            }
+        });
+        level4.setOnClickListener(v -> {
+            if (isLevel4Unlocked) {
+                openLevel("lesson4");
+            } else {
+                showLockedMessage();
+            }
+        });
+        level5.setOnClickListener(v -> {
+            if (isLevel5Unlocked) {
+                openLevel("lesson5");
+            } else {
+                showLockedMessage();
+            }
+        });
+        level6.setOnClickListener(v -> {
+            if (isLevel6Unlocked) {
+                openLevel("lesson6");
+            } else {
+                showLockedMessage();
+            }
+        });
+
 
         loadUserDataAndProgress(profileNameTextView);
     }
@@ -164,33 +206,32 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < icons.length; i++) {
             icons[i].clearColorFilter();
             points[i].setImageResource(0);
-            icons[i].setEnabled(false);
         }
 
         updateLevelIconAndColor(p.getLevel1Score(), level1, level1Points);
-        level1.setEnabled(true);
+        isLevel1Unlocked = true;
 
         if (p.isLevel1Completed() && p.getLevel1Score() >= 30) {
             updateLevelIconAndColor(p.getLevel2Score(), level2, level2Points);
-            level2.setEnabled(true);
+            isLevel2Unlocked = true;
         }
 
         if (p.isLevel2Completed() && p.getLevel2Score() >= 30) {
             updateLevelIconAndColor(p.getLevel3Score(), level3, level3Points);
-            level3.setEnabled(true);
             updateLevelIconAndColor(p.getLevel4Score(), level4, level4Points);
-            level4.setEnabled(true);
+            isLevel3Unlocked = true;
+            isLevel4Unlocked = true;
         }
 
         if (p.isLevel3Completed() && p.getLevel3Score() >= 30
                 && p.isLevel4Completed() && p.getLevel4Score() >= 30) {
             updateLevelIconAndColor(p.getLevel5Score(), level5, level5Points);
-            level5.setEnabled(true);
+            isLevel5Unlocked = true;
         }
 
         if (p.isLevel5Completed() && p.getLevel5Score() >= 30) {
             updateLevelIconAndColor(p.getLevel6Score(), level6, level6Points);
-            level6.setEnabled(true);
+            isLevel6Unlocked = true;
         }
     }
 
@@ -208,9 +249,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (score >= 30) {
             levelPoints.setImageResource(R.drawable.ic_one_star);
             levelImage.setColorFilter(Color.rgb(255, 128, 0));
-        } else {
-            levelPoints.setImageResource(0);
-            levelImage.clearColorFilter();
         }
     }
 
@@ -220,4 +258,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void showLockedMessage() {
+        Toast.makeText(MainActivity.this,
+                "This level is locked. Please complete the previous levels first.",
+                Toast.LENGTH_SHORT).show();
+    }
+
 }

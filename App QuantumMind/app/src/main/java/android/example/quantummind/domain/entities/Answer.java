@@ -1,4 +1,4 @@
-package android.example.quantummind.domain;
+package android.example.quantummind.domain.entities;
 
 import java.util.HashMap;
 import java.util.Map;

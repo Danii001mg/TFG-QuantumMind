@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-import android.example.quantummind.domain.User;
-import android.example.quantummind.domain.UserProfileController;
+import android.example.quantummind.domain.entities.User;
+import android.example.quantummind.domain.controllers.UserProfileController;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -37,13 +37,13 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        controller = new UserProfileController();
+        controller = new UserProfileController(this);
 
-        profileImageView   = findViewById(R.id.profileImageView);
-        profileNameTextView  = findViewById(R.id.profileNameTextView);
+        profileImageView = findViewById(R.id.profileImageView);
+        profileNameTextView = findViewById(R.id.profileNameTextView);
         profileEmailTextView = findViewById(R.id.profileEmailTextView);
         logOutOption = findViewById(R.id.logoutOption);
-        editOption   = findViewById(R.id.editOption);
+        editOption = findViewById(R.id.editOption);
 
         loadUserProfile();
 
@@ -73,11 +73,10 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User user) {
                 currentUser = user;
-                String name = user.getDisplayName() != null ? user.getDisplayName() : "";
-                profileNameTextView.setText(name);
-
-                String email = user.getEmail() != null ? user.getEmail() : "";
-                profileEmailTextView.setText(email);
+                profileNameTextView.setText(user.getDisplayName() != null
+                        ? user.getDisplayName() : "");
+                profileEmailTextView.setText(user.getEmail() != null
+                        ? user.getEmail() : "");
 
                 String photoUrl = user.getPhotoUrl();
                 if (photoUrl != null && !photoUrl.isEmpty()) {
@@ -99,20 +98,24 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void uploadNewProfileImage(Uri imageUri) {
-        controller.uploadProfileImage(imageUri, new UserProfileController.ImageUploadCallback() {
-            @Override
-            public void onUploadSuccess(Uri photoUri) {
-                Toast.makeText(UserProfileActivity.this, "Profile image updated", Toast.LENGTH_SHORT).show();
-                if (currentUser != null) {
-                    currentUser.setPhotoUrl(photoUri.toString());
-                }
-            }
+        controller.uploadProfileImage(imageUri,
+                new UserProfileController.ImageUploadCallback() {
+                    @Override
+                    public void onUploadSuccess(Uri photoUri) {
+                        Toast.makeText(UserProfileActivity.this,
+                                "Profile image updated", Toast.LENGTH_SHORT).show();
+                        if (currentUser != null) {
+                            currentUser.setPhotoUrl(photoUri.toString());
+                        }
+                    }
 
-            @Override
-            public void onUploadFailure(String errorMessage) {
-                Toast.makeText(UserProfileActivity.this, "Upload failed: " + errorMessage, Toast.LENGTH_LONG).show();
-            }
-        });
+                    @Override
+                    public void onUploadFailure(String errorMessage) {
+                        Toast.makeText(UserProfileActivity.this,
+                                "Upload failed: " + errorMessage,
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void showLogOutDialog() {

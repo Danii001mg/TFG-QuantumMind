@@ -13,23 +13,34 @@ public class RankingItem {
         this.score = score;
     }
 
+    // Getters
     public int getPosition() {
         return position;
     }
-
     public String getUsername() {
         return username;
     }
-
     public int getPercentageCompleted() {
         return percentageCompleted;
     }
-
     public double getScore() {
         return score;
     }
 
+    // Setters
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPercentageCompleted(int percentageCompleted) {
+        this.percentageCompleted = percentageCompleted;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }

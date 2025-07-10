@@ -2,25 +2,24 @@ package android.example.quantummind.presentation;
 
 import android.content.Intent;
 import android.example.quantummind.R;
+import android.example.quantummind.domain.controllers.LoginController;
+import android.example.quantummind.domain.entities.User;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.example.quantummind.domain.RegisterController;
-import android.example.quantummind.domain.User;
-
 public class RegisterActivity extends AppCompatActivity {
 
-    private RegisterController controller;
+    private LoginController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        controller = new RegisterController();
+        controller = new LoginController(this);
     }
 
     public void createAccount(android.view.View view) {
@@ -37,14 +36,12 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        controller.registerUser(name, email, password, new RegisterController.RegisterCallback() {
+        controller.register(name, email, password, new LoginController.Callback() {
             @Override
             public void onSuccess(User user) {
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 finish();
             }
-
             @Override
             public void onError(String errorMessage) {
                 Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_LONG).show();

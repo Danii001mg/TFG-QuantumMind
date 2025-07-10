@@ -1,4 +1,4 @@
-package android.example.quantummind.domain;
+package android.example.quantummind.domain.entities;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 

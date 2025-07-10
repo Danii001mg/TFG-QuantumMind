@@ -1,48 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:fillViewport="true">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@android:color/white"
             android:gravity="center_horizontal"
-            android:padding="16dp">
+            android:paddingTop="40dp"
+            android:paddingBottom="32dp"
+            android:paddingHorizontal="16dp">
 
-            <!-- Profile Image -->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImageView"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="161dp"
+                android:layout_height="149dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/ic_profile_picture_placeholder"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/colorAccent"
-                android:layout_marginTop="32dp"/>
+                app:civ_border_color="#FFC107"
+                app:civ_border_width="2dp" />
 
-            <!-- Name TextView -->
             <TextView
                 android:id="@+id/profileNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold"/>
+                android:text="John Doe"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"/>
 
-            <!-- Email TextView -->
             <TextView
                 android:id="@+id/profileEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:layout_marginBottom="24dp"/>
+                android:text="john.doe@example.com"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
 
             <!-- Edit Profile Option -->
             <LinearLayout
@@ -53,8 +74,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackground"
-                android:padding="12dp"
-                android:gravity="center_vertical">
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -62,18 +84,44 @@
                     android:src="@drawable/ic_edit"
                     android:contentDescription="@string/edit_profile" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/edit_profile"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_profile"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Update your profile information"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow" />
+
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="16dp"/>
 
             <!-- Log Out Option -->
             <LinearLayout
@@ -84,8 +132,9 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackground"
-                android:padding="12dp"
-                android:gravity="center_vertical">
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -93,21 +142,44 @@
                     android:src="@drawable/ic_logout"
                     android:contentDescription="@string/log_out" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/log_out"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/log_out"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_red_dark"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sign out of your account"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/holo_red_light"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow" />
+
             </LinearLayout>
 
-
         </LinearLayout>
-    </ScrollView>
 
-</RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+    </LinearLayout>
+
+</ScrollView>
